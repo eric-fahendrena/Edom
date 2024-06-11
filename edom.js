@@ -149,3 +149,21 @@ const addEvent = element => (event, handler) => {
 const removeEvent = element => (event, handler) => {
    element.removeEventListener(event, handler);
 }
+
+/**
+ * Insert an element before another element
+ * @param {HTMLElement} newElement - The new element to be inserted
+ * @return {Function(referenceElement<HTMLElement>)} - The reference element before which the new element will be inserted
+ */
+const insertBefore = newElement => referenceElement => {
+   referenceElement.parentNode.insertBefore(newElement, referenceElement);
+}
+
+/**
+* Insert an element after another element
+* @param {HTMLElement} newElement - The new element to be inserted
+* @return {Function(referenceElement<HTMLElement>)} - The reference element after which the new element will be inserted
+*/
+const insertAfter = newElement => referenceElement => {
+   referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
+}
