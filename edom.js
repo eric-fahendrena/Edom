@@ -178,3 +178,30 @@ const applyAnimation = element => (animationName, duration, timingFunction) => {
    element.style.animationDuration = duration;
    element.style.animationTimingFunction = timingFunction;
 }
+
+/**
+ * Perform an AJAX GET request
+ * @param {String} url - The URL to send the request to
+ * @param {Function} callback - The callback function to handle the response
+ */
+const ajaxGet = (url, callback) => {
+   const xhr = new XMLHttpRequest();
+   xhr.open('GET', url, true);
+   xhr.onreadystatechange = () => {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+           callback(xhr.responseText);
+       }
+   };
+   xhr.send();
+}
+
+/**
+* Perform a Fetch GET request
+* @param {String} url - The URL to send the request to
+* @return {Promise} - A promise that resolves to the response
+*/
+const fetchGet = url => {
+   return fetch(url)
+       .then(response => response.json())
+       .catch(error => console.error('Error:', error));
+}
