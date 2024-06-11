@@ -3,7 +3,7 @@
  * @param   {string} element's name
  * @return   {HTMLElement}
  */
-const createNew = elName => document.createElement(elName);
+const create = elName => document.createElement(elName);
 /**
  * Select an element from html
  * @param   {String} query selector
@@ -17,48 +17,36 @@ const select = qs => document.querySelector(qs);
  */
 const selectAll = qs => document.querySelectorAll(qs);
 /**
- * Set attribute to a html element.
- * @param   {HTMLElement} element
- * @return   {Function(attrName<String>)<Function(value<String>)>}
- */
-const setAttrTo = el => attrName => value => el.setAttribute(attrName, value);
-/**
- * Apply the attributes registered in an Object to a HTMLElement.
+ * Apply the attributes specified in params, as an Object, to a HTMLElement.
  * @param   {HTMLElement} element
  * @return   {Function(attrsObj<Object>)} apply the attrs to the element
  */
-const applyAttrsTo = el => attrsObj => {
+const setAttr = el => attrsObj => {
    const attrsArrayed = Object.entries(attrsObj);
-   attrsArrayed.map(arr => setAttrTo(el)(arr[0])(arr[1]));
+   attrsArrayed.map(arr => el.setAttribute(arr[0], arr[1]));
 }
 /**
- * Set CSS property for an HTMLElement
- * @param   {HTMLElement} element
- * @return   {Function(cssProp<String>)<Function(value<String>)>}
- */
-const setCSSPropValue = el => cssProp => value => el['style'][cssProp] = value;
-/**
- * Apply the style registered in the object.
+ * add CSS to an element
  * @param   {HTMLElement}
  * @return   {Function(styleObj<Object>)}
  */
-const applyStyleTo = el => style => {
+const addCSS = el => style => {
    const styleArrayed = Object.entries(style);
-   styleArrayed.map(arr => setCSSPropValue(el)(arr[0])(arr[1]));
+   styleArrayed.map(arr => el['style'][arr[0]] = arr[1]);
 }
 /**
  * Get style of an element. Note that it only return the style set from javascript and not the computed style.
  * @param   {HTMLElement} element
  * @return   {Function(cssProp<String>)} specify the css property to get
  */
-const getStyleOf = element => cssProp => {
+const getCSS = element => cssProp => {
    return element['style'][cssProp];
 }
 /**
- * Get computed style for an HTMLElement
+ * Get computed style of an HTMLElement
  * @param   {HTMLElement} element
  */
-const getCSSFor = element => cssProp => {
+const getComputedCSS = element => cssProp => {
    const compStyle = window.getComputedStyle(element);
    return compStyle.getPropertyValue(cssProp);
 }
@@ -109,17 +97,23 @@ const containsClass = element => className => {
  */
 const write = el => text => el['innerText'] = text;
 /**
- * Make html code into a HTMLElement
+ * Set html code
  * @param   {HTMLElement} element
  * @return   {Function(htmlCode<String>)} add thr html code into the element
  */
-const makeHTMLInto = el => htmlCode => el['innerHTML'] = htmlCode;
+const setHTML = el => htmlCode => el['innerHTML'] = htmlCode;
+/**
+ * add html code
+ * @param   {HTMLElement} element
+ * @return   {Function(htmlCode<String>)} add thr html code into the element
+ */
+const addHTML = el => htmlCode => el['innerHTML'] += htmlCode;
 /**
  * Append a HTMLElement in an HTMLElement as child.
- * @param   {HTMLElement} parent
- * @return   {Function(child<HTMLElement>)} specify the child to append
+ * @param   {HTMLElement} child
+ * @return   {Function(child<HTMLElement>)} specify the parent
  */
-const appendIn = parent => child => parent.appendChild(child);
+const append = child => parent => parent.appendChild(child);
 /**
  * Rotate an element.
  * @param   {HTMLElement} element
