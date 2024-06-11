@@ -19,14 +19,47 @@ Load edom.js to your html file followed by your javascript code.
 </script>
 ```
 
-## Hello, world!
+## Examples
+Edom is easy to use.
+
+### Hello, world!
 Write "Hello, world!" in h1 element.
 ```js
 // Create h1 element
-const h1 = createNew('h1');
+const h1 = create('h1');
 // Write a text
 write(h1)('Hello, world!');
 
 // Add the element to the body
-appendIn(document.body)(h1);
+append(h1)(document.body);
+```
+### Functions
+```js
+const element = create('div'); // create an element
+
+// write text to an element
+write(element)("Your text here");
+
+// set html (this completely changes the html inside the element)
+setHTML(element)('<span>HTML code</span>');
+
+// add html (this adds an html code in the element)
+addHTML(element)('<span>HTML code</span>');
+
+// append element to a parent element
+append(element)(parent);
+
+// add attribute
+addAttr(element)({'prop': 'value', 'prop1': 'value'});
+
+// add style to an element
+addCSS(element)({color: 'red', fontSize: '12px'});
+
+// get computed css
+const compCSS = getComputedCSS(element)('width');
+
+// classes utilities
+addClass(element)('my-class'); // add class
+removeClass(element)('my-class'); // remove class
+toggleClass(element)('my-class'); // toggle class
 ```
