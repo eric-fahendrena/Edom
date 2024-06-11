@@ -21,7 +21,7 @@ const selectAll = qs => document.querySelectorAll(qs);
  * @param   {HTMLElement} element
  * @return   {Function(attrsObj<Object>)} apply the attrs to the element
  */
-const setAttr = el => attrsObj => {
+const addAttr = el => attrsObj => {
    const attrsArrayed = Object.entries(attrsObj);
    attrsArrayed.map(arr => el.setAttribute(arr[0], arr[1]));
 }
