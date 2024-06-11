@@ -167,3 +167,14 @@ const insertBefore = newElement => referenceElement => {
 const insertAfter = newElement => referenceElement => {
    referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
 }
+
+/**
+ * Apply CSS animation to an element
+ * @param {HTMLElement} element - The element to animate
+ * @return {Function(animationName<String>, duration<String>, timingFunction<String>)} - Apply animation
+ */
+const applyAnimation = element => (animationName, duration, timingFunction) => {
+   element.style.animationName = animationName;
+   element.style.animationDuration = duration;
+   element.style.animationTimingFunction = timingFunction;
+}
