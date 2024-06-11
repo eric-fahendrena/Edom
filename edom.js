@@ -131,3 +131,21 @@ const loadScript = (src) => {
    setAttrTo(script)("src")(src);
    appendIn(document.body)(script);
 }
+
+/**
+ * Add event listener to an element
+ * @param   {HTMLElement} element
+ * @return   {Function(event<String>, handler<Function>)} specify the event type and the handler
+ */
+const addEvent = element => (event, handler) => {
+   element.addEventListener(event, handler);
+}
+
+/**
+* Remove event listener from an element
+* @param   {HTMLElement} element
+* @return   {Function(event<String>, handler<Function>)} specify the event type and the handler
+*/
+const removeEvent = element => (event, handler) => {
+   element.removeEventListener(event, handler);
+}
