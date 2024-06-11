@@ -205,3 +205,17 @@ const fetchGet = url => {
        .then(response => response.json())
        .catch(error => console.error('Error:', error));
 }
+
+/**
+ * Serialize form data
+ * @param {HTMLFormElement} form - The form element to serialize
+ * @return {Object} - The serialized form data
+ */
+const serializeForm = form => {
+   const formData = new FormData(form);
+   const data = {};
+   formData.forEach((value, key) => {
+       data[key] = value;
+   });
+   return data;
+}
