@@ -131,3 +131,91 @@ const loadScript = (src) => {
    setAttrTo(script)("src")(src);
    appendIn(document.body)(script);
 }
+
+/**
+ * Add event listener to an element
+ * @param   {HTMLElement} element
+ * @return   {Function(event<String>, handler<Function>)} specify the event type and the handler
+ */
+const addEvent = element => (event, handler) => {
+   element.addEventListener(event, handler);
+}
+
+/**
+* Remove event listener from an element
+* @param   {HTMLElement} element
+* @return   {Function(event<String>, handler<Function>)} specify the event type and the handler
+*/
+const removeEvent = element => (event, handler) => {
+   element.removeEventListener(event, handler);
+}
+
+/**
+ * Insert an element before another element
+ * @param {HTMLElement} newElement - The new element to be inserted
+ * @return {Function(referenceElement<HTMLElement>)} - The reference element before which the new element will be inserted
+ */
+const insertBefore = newElement => referenceElement => {
+   referenceElement.parentNode.insertBefore(newElement, referenceElement);
+}
+
+/**
+* Insert an element after another element
+* @param {HTMLElement} newElement - The new element to be inserted
+* @return {Function(referenceElement<HTMLElement>)} - The reference element after which the new element will be inserted
+*/
+const insertAfter = newElement => referenceElement => {
+   referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
+}
+
+/**
+ * Apply CSS animation to an element
+ * @param {HTMLElement} element - The element to animate
+ * @return {Function(animationName<String>, duration<String>, timingFunction<String>)} - Apply animation
+ */
+const applyAnimation = element => (animationName, duration, timingFunction) => {
+   element.style.animationName = animationName;
+   element.style.animationDuration = duration;
+   element.style.animationTimingFunction = timingFunction;
+}
+
+/**
+ * Perform an AJAX GET request
+ * @param {String} url - The URL to send the request to
+ * @param {Function} callback - The callback function to handle the response
+ */
+const ajaxGet = (url, callback) => {
+   const xhr = new XMLHttpRequest();
+   xhr.open('GET', url, true);
+   xhr.onreadystatechange = () => {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+           callback(xhr.responseText);
+       }
+   };
+   xhr.send();
+}
+
+/**
+* Perform a Fetch GET request
+* @param {String} url - The URL to send the request to
+* @return {Promise} - A promise that resolves to the response
+*/
+const fetchGet = url => {
+   return fetch(url)
+       .then(response => response.json())
+       .catch(error => console.error('Error:', error));
+}
+
+/**
+ * Serialize form data
+ * @param {HTMLFormElement} form - The form element to serialize
+ * @return {Object} - The serialized form data
+ */
+const serializeForm = form => {
+   const formData = new FormData(form);
+   const data = {};
+   formData.forEach((value, key) => {
+       data[key] = value;
+   });
+   return data;
+}
