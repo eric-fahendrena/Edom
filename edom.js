@@ -233,3 +233,74 @@ const multiply = element => number => {
       referenceNode = clone;
    }
 }
+
+
+/**
+ * Create a form element
+ * @param   {Object} formConfig - Configuration object for the form
+ * @return  {HTMLElement} - The created form element
+ */
+const createForm = formConfig => {
+   const form = create('form');
+   
+   if (formConfig.id) addAttr(form)({ id: formConfig.id });
+   if (formConfig.className) addClass(form)(formConfig.className);
+   if (formConfig.action) addAttr(form)({ action: formConfig.action });
+   if (formConfig.method) addAttr(form)({ method: formConfig.method });
+   
+   formConfig.fields.forEach(fieldConfig => {
+      const field = createField(fieldConfig);
+      append(field)(form);
+   });
+
+   return form;
+}
+
+/**
+* Create a form field element
+* @param   {Object} fieldConfig - Configuration object for the form field
+* @return   {HTMLElement} - The created form field element
+*/
+const createField = fieldConfig => {
+   let field;
+   const { type, name, label, ...attributes } = fieldConfig;
+   switch (type) {
+      case 'textarea':
+         field = create('textarea');
+         break;
+      case 'select':
+         field = create('select');
+         if (fieldConfig.options) {
+            fieldConfig.options.forEach(optionConfig => {
+               const option = create('option');
+               addAttr(option)({ value: optionConfig.value });
+               write(option)(optionConfig.text);
+               append(option)(field);
+            });
+         }
+         break;
+      case 'button':
+      case 'submit':
+      case 'reset':
+         field = create('button');
+         addAttr(field)({ type });
+         write(field)(fieldConfig.text || '');
+         break;
+      default:
+         field = create('input');
+         addAttr(field)({ type });
+   }
+
+   addAttr(field)({ name });
+   Object.entries(attributes).forEach(([attr, value]) => addAttr(field)({ [attr]: value }));
+   if (label) {
+      const labelElement = create('label');
+      write(labelElement)(label);
+      addAttr(labelElement)({ htmlFor: name });
+      const wrapper = create('div');
+      append(labelElement)(wrapper);
+      append(field)(wrapper);
+      return wrapper;
+   }
+   return field;
+}
