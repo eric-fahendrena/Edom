@@ -135,56 +135,56 @@ const loadScript = (src) => {
 /**
  * Add event listener to an element
  * @param   {HTMLElement} element
- * @return   {Function(event<String>, handler<Function>)} specify the event type and the handler
+ * @return   {Function(event<String>): handler<Function>)} specify the event type and the handler
  */
-const addEvent = element => (event, handler) => {
+const addEvent = element => event => handler => {
    element.addEventListener(event, handler);
 }
 
 /**
 * Remove event listener from an element
 * @param   {HTMLElement} element
-* @return   {Function(event<String>, handler<Function>)} specify the event type and the handler
+* @return   {Function(event<String>): handler<Function>} specify the event type and the handler
 */
-const removeEvent = element => (event, handler) => {
+const removeEvent = element => event => handler => {
    element.removeEventListener(event, handler);
 }
 
 /**
  * Insert an element before another element
- * @param {HTMLElement} newElement - The new element to be inserted
- * @return {Function(referenceElement<HTMLElement>)} - The reference element before which the new element will be inserted
+ * @param {HTMLElement} referenceElement The reference element before which the new element will be inserted
+ * @return {Function(newElement<HTMLElement>)} - newElement - The new element to be inserted
  */
-const insertBefore = newElement => referenceElement => {
+const insertBefore = referenceElement => newElement => {
    referenceElement.parentNode.insertBefore(newElement, referenceElement);
 }
 
 /**
 * Insert an element after another element
-* @param {HTMLElement} newElement - The new element to be inserted
-* @return {Function(referenceElement<HTMLElement>)} - The reference element after which the new element will be inserted
+* @param {HTMLElement} The reference element after which the new element will be inserted
+* @return {Function(referenceElement<HTMLElement>)} - newElement - The new element to be inserted
 */
-const insertAfter = newElement => referenceElement => {
+const insertAfter = referenceElement => newElement => {
    referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
 }
 
 /**
  * Apply CSS animation to an element
  * @param {HTMLElement} element - The element to animate
- * @return {Function(animationName<String>, duration<String>, timingFunction<String>)} - Apply animation
+ * @return {Function(animObject<object>)} - Apply animation
  */
-const applyAnimation = element => (animationName, duration, timingFunction) => {
-   element.style.animationName = animationName;
-   element.style.animationDuration = duration;
-   element.style.animationTimingFunction = timingFunction;
+const applyAnimation = element => animObject => {
+   element.style.animationName = animObject.name;
+   element.style.animationDuration = animObject.duration;
+   element.style.animationTimingFunction = animObject.timingFunction;
 }
 
 /**
  * Perform an AJAX GET request
  * @param {String} url - The URL to send the request to
- * @param {Function} callback - The callback function to handle the response
+ * @param {Function(calback)} callback - The callback function to handle the response
  */
-const ajaxGet = (url, callback) => {
+const ajaxGet = url => callback => {
    const xhr = new XMLHttpRequest();
    xhr.open('GET', url, true);
    xhr.onreadystatechange = () => {

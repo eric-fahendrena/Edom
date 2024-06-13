@@ -52,8 +52,10 @@ setHTML(element)('<span>HTML code</span>');
 // add html (this adds an html code in the element)
 addHTML(element)('<span>HTML code</span>');
 
-// append element to a parent element
-append(element)(parent);
+// inserting element
+append(element)(parent); // append element to a parent element
+insertBefore(element)(newElement);
+insertAfter(element)(newElement);
 
 // add attribute
 addAttr(element)({'prop': 'value', 'prop1': 'value'});
@@ -68,6 +70,24 @@ const compCSS = getComputedCSS(element)('width');
 addClass(element)('my-class'); // add class
 removeClass(element)('my-class'); // remove class
 toggleClass(element)('my-class'); // toggle class
+
+// event handling
+addEvent(element)(eventType)(handler); // add event listener
+removeEvent(element)(eventType)(handler); // remove event listener
+
+// apply css animation
+applyAnimation(element)({
+  name: animationName,
+  duration: animationDuration,
+  timingFunction: animationTimingFunction
+});
+
+// ajax get
+ajaxGet(url)(callback);
+const promise = fetchGet(url);
+
+// serialize form data
+const jsonObject = serializeForm(formElement);
 ```
 
 ## Contributing
