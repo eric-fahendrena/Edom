@@ -1,19 +1,21 @@
 # Edom.js
 
-Edom.js is a javascript library that allows interact with DOM easly.
+Edom.js is a JavaScript library that allows you to interact with the DOM easily.
 
 ## Installation
 
-Go to your peoject directory
-```bsh
+Navigate to your project directory:
+```bash
 mkdir my-project
 cd my-project
 ```
-Clone this repository
-```bsh
+
+Clone this repository:
+```bash
 git clone https://github.com/eric-fahendrena/Edom
 ```
-Load edom.js to your html file followed by your javascript code.
+
+Load `edom.js` into your HTML file followed by your JavaScript code:
 ```html
 <script src="Edom/edom.js"></script>
 <script>
@@ -27,7 +29,7 @@ Edom.js is easy to use.
 
 ### Hello, world!
 
-Write "Hello, world!" in h1 element.
+Write "Hello, world!" in an `h1` element:
 ```js
 // Create h1 element
 const h1 = create('h1');
@@ -89,10 +91,9 @@ const promise = fetchGet(url);
 // serialize form data
 const jsonObject = serializeForm(formElement);
 
-
 // multiply an element
-const p =  create('p');
-write(p)('Hello !');
+const p = create('p');
+write(p)('Hello!');
 append(p)(document.body);
 multiply(p)(5);
 ```
