@@ -216,6 +216,20 @@ const serializeForm = form => {
    const data = {};
    formData.forEach((value, key) => {
        data[key] = value;
-   });
+   }); 
    return data;
+}
+
+/**
+ * Multiply an element by creating the specified number of copies and inserting them after the element.
+ * @param   {HTMLElement} element
+ * @return   {Function(number<Number>)} specify the number of copies
+ */
+const multiply = element => number => {
+   let referenceNode = element;
+   for (let i = 0; i < number; i++) {
+      const clone = element.cloneNode(true);
+      referenceNode.after(clone);
+      referenceNode = clone;
+   }
 }
