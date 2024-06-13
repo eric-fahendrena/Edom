@@ -88,6 +88,13 @@ const promise = fetchGet(url);
 
 // serialize form data
 const jsonObject = serializeForm(formElement);
+
+
+// multiply an element
+const p =  create('p');
+write(p)('Hello !');
+append(p)(document.body);
+multiply(p)(5);
 ```
 
 ## Contributing
