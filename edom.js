@@ -1,9 +1,16 @@
 /**
- * Create new html element
- * @param   {string} element's name
- * @return   {HTMLElement}
+ * Create new html element(s)
+ * @param   {string | Array<string>} elName - Single element name or array of element names
+ * @return  {HTMLElement | Array<HTMLElement>} - Single HTMLElement or array of HTMLElements
  */
-const create = elName => document.createElement(elName);
+const create = elName => {
+   if (Array.isArray(elName)) {
+      return elName.map(name => document.createElement(name));
+   } else {
+      return document.createElement(elName);
+   }
+};
+
 /**
  * Select an element from html
  * @param   {String} query selector
@@ -71,7 +78,7 @@ const removeClass = element => classNames => {
    if (Array.isArray(classNames)) {
       classNames.map(item => element.classList.remove(item));
    } else {
-       element.classList.remove(classNames);
+      element.classList.remove(classNames);
    }
 }
 /**
@@ -91,11 +98,20 @@ const containsClass = element => className => {
    return element.classList.contains(className);
 }
 /**
- * Make text into a HTMLElement.
- * @param   {HTMLElement} el
- * @return   {Function(text<String>)}
+ * Set inner text of HTMLElement(s).
+ * @param   {HTMLElement | Array<HTMLElement>} el - Single HTMLElement or array of HTMLElements
+ * @return  {Function(text<String>)}
  */
-const write = el => text => el['innerText'] = text;
+const write = el => text => {
+   if (Array.isArray(el)) {
+      el.forEach((element) => {
+         element.innerText = text;
+      });
+   } else {
+      el.innerText = text;
+   }
+};
+
 /**
  * Set html code
  * @param   {HTMLElement} element
@@ -110,10 +126,21 @@ const setHTML = el => htmlCode => el['innerHTML'] = htmlCode;
 const addHTML = el => htmlCode => el['innerHTML'] += htmlCode;
 /**
  * Append a HTMLElement in an HTMLElement as child.
- * @param   {HTMLElement} child
+ * @param   {HTMLElement  | Array<HTMLElement>} child
  * @return   {Function(child<HTMLElement>)} specify the parent
  */
-const append = child => parent => parent.appendChild(child);
+const append = child => parent => {
+   if (Array.isArray(child)) {
+      parent.appendChild(child[0]);
+      let ref = child[0];
+      for (let i = 1; i < child.length; i++) {
+         ref.after(child[i]);
+         ref = child[i];
+      }
+   } else {
+      parent.appendChild(child);
+   }
+};
 /**
  * Rotate an element.
  * @param   {HTMLElement} element
@@ -232,75 +259,4 @@ const multiply = element => number => {
       referenceNode.after(clone);
       referenceNode = clone;
    }
-}
-
-
-/**
- * Create a form element
- * @param   {Object} formConfig - Configuration object for the form
- * @return  {HTMLElement} - The created form element
- */
-const createForm = formConfig => {
-   const form = create('form');
-   
-   if (formConfig.id) addAttr(form)({ id: formConfig.id });
-   if (formConfig.className) addClass(form)(formConfig.className);
-   if (formConfig.action) addAttr(form)({ action: formConfig.action });
-   if (formConfig.method) addAttr(form)({ method: formConfig.method });
-   
-   formConfig.fields.forEach(fieldConfig => {
-      const field = createField(fieldConfig);
-      append(field)(form);
-   });
-
-   return form;
-}
-
-/**
-* Create a form field element
-* @param   {Object} fieldConfig - Configuration object for the form field
-* @return   {HTMLElement} - The created form field element
-*/
-const createField = fieldConfig => {
-   let field;
-   const { type, name, label, ...attributes } = fieldConfig;
-   switch (type) {
-      case 'textarea':
-         field = create('textarea');
-         break;
-      case 'select':
-         field = create('select');
-         if (fieldConfig.options) {
-            fieldConfig.options.forEach(optionConfig => {
-               const option = create('option');
-               addAttr(option)({ value: optionConfig.value });
-               write(option)(optionConfig.text);
-               append(option)(field);
-            });
-         }
-         break;
-      case 'button':
-      case 'submit':
-      case 'reset':
-         field = create('button');
-         addAttr(field)({ type });
-         write(field)(fieldConfig.text || '');
-         break;
-      default:
-         field = create('input');
-         addAttr(field)({ type });
-   }
-
-   addAttr(field)({ name });
-   Object.entries(attributes).forEach(([attr, value]) => addAttr(field)({ [attr]: value }));
-   if (label) {
-      const labelElement = create('label');
-      write(labelElement)(label);
-      addAttr(labelElement)({ htmlFor: name });
-      const wrapper = create('div');
-      append(labelElement)(wrapper);
-      append(field)(wrapper);
-      return wrapper;
-   }
-   return field;
 }
