@@ -108,37 +108,6 @@ append(p)(document.body);
 multiply(p)(5);
 ```
 
-### Form
-
-```js
-// Define your parameter form 
-const formConfig = {
-  id: 'myForm',
-  className: 'form-class',
-  action: '/submit',
-  method: 'post',
-  fields: [
-    { type: 'text', name: 'username', label: 'Username:', placeholder: 'Enter your username' },
-    { type: 'password', name: 'password', label: 'Password:', placeholder: 'Enter your password' },
-    { type: 'email', name: 'email', label: 'Email:', placeholder: 'Enter your email' },
-    { type: 'textarea', name: 'message', label: 'Message:', rows: 5, cols: 30 },
-    {
-      type: 'select', name: 'options', label: 'Options:', options: [
-          { value: '1', text: 'Option 1' },
-          { value: '2', text: 'Option 2' },
-          { value: '3', text: 'Option 3' }
-      ]
-    },
-    { type: 'submit', name: 'submit', text: 'Submit' }
-  ]
-};
-
-// create the form
-const form = createForm(formConfig);
-
-// append the form
-append(form)(document.body);
-```
 
 ## Contributing
 
