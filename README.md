@@ -38,6 +38,17 @@ write(h1)('Hello, world!');
 
 // Add the element to the body
 append(h1)(document.body);
+
+// Or create many elements
+const elements = create(['h2','h3','h4']);
+
+// Write a text to all elements
+write(elements)('Hello, world!');
+
+// Add all elements to the body
+append(elements)(document.body);
+
+
 ```
 
 ### Functions
@@ -97,6 +108,7 @@ write(p)('Hello!');
 append(p)(document.body);
 multiply(p)(5);
 ```
+
 
 ## Contributing
 
