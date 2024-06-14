@@ -1,9 +1,16 @@
 /**
- * Create new html element
- * @param   {string} element's name
- * @return   {HTMLElement}
+ * Create new html element(s)
+ * @param   {string | Array<string>} elName - Single element name or array of element names
+ * @return  {HTMLElement | Array<HTMLElement>} - Single HTMLElement or array of HTMLElements
  */
-const create = elName => document.createElement(elName);
+const create = elName => {
+   if (Array.isArray(elName)) {
+      return elName.map(name => document.createElement(name));
+   } else {
+      return document.createElement(elName);
+   }
+};
+
 /**
  * Select an element from html
  * @param   {String} query selector
@@ -71,7 +78,7 @@ const removeClass = element => classNames => {
    if (Array.isArray(classNames)) {
       classNames.map(item => element.classList.remove(item));
    } else {
-       element.classList.remove(classNames);
+      element.classList.remove(classNames);
    }
 }
 /**
@@ -91,11 +98,20 @@ const containsClass = element => className => {
    return element.classList.contains(className);
 }
 /**
- * Make text into a HTMLElement.
- * @param   {HTMLElement} el
- * @return   {Function(text<String>)}
+ * Set inner text of HTMLElement(s).
+ * @param   {HTMLElement | Array<HTMLElement>} el - Single HTMLElement or array of HTMLElements
+ * @return  {Function(text<String>)}
  */
-const write = el => text => el['innerText'] = text;
+const write = el => text => {
+   if (Array.isArray(el)) {
+      el.forEach((element) => {
+         element.innerText = text;
+      });
+   } else {
+      el.innerText = text;
+   }
+};
+
 /**
  * Set html code
  * @param   {HTMLElement} element
@@ -110,10 +126,21 @@ const setHTML = el => htmlCode => el['innerHTML'] = htmlCode;
 const addHTML = el => htmlCode => el['innerHTML'] += htmlCode;
 /**
  * Append a HTMLElement in an HTMLElement as child.
- * @param   {HTMLElement} child
+ * @param   {HTMLElement  | Array<HTMLElement>} child
  * @return   {Function(child<HTMLElement>)} specify the parent
  */
-const append = child => parent => parent.appendChild(child);
+const append = child => parent => {
+   if (Array.isArray(child)) {
+      parent.appendChild(child[0]);
+      let ref = child[0];
+      for (let i = 1; i < child.length; i++) {
+         ref.after(child[i]);
+         ref = child[i];
+      }
+   } else {
+      parent.appendChild(child);
+   }
+};
 /**
  * Rotate an element.
  * @param   {HTMLElement} element
