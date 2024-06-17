@@ -3,7 +3,7 @@
  * @param   {string | Array<string>} elName - Single element name or array of element names
  * @return  {HTMLElement | Array<HTMLElement>} - Single HTMLElement or array of HTMLElements
  */
-export const create = elName => {
+const create = elName => {
    if (Array.isArray(elName)) {
       return elName.map(name => document.createElement(name));
    } else {
@@ -16,21 +16,21 @@ export const create = elName => {
  * @param   {String} query selector
  * @return   {HTMLElement} an element selected
  */
-export const select = qs => document.querySelector(qs);
+const select = qs => document.querySelector(qs);
 
 /**
  * Select all elements having the specified query selector
  * @param   {String} query selector
  * @param   {Array.<HTMLElement>} elements selected and each item is of type object
  */
-export const selectAll = qs => document.querySelectorAll(qs);
+const selectAll = qs => document.querySelectorAll(qs);
 
 /**
  * Apply the attributes specified in params, as an Object, to a HTMLElement.
  * @param   {HTMLElement} element
  * @return   {Function(attrsObj<Object>)} apply the attrs to the element
  */
-export const addAttr = el => attrsObj => {
+const addAttr = el => attrsObj => {
    const attrsArrayed = Object.entries(attrsObj);
    attrsArrayed.forEach(arr => el.setAttribute(arr[0], arr[1]));
 }
@@ -40,7 +40,7 @@ export const addAttr = el => attrsObj => {
  * @param   {HTMLElement}
  * @return   {Function(styleObj<Object>)}
  */
-export const addCSS = el => style => {
+const addCSS = el => style => {
    const styleArrayed = Object.entries(style);
    styleArrayed.forEach(arr => el['style'][arr[0]] = arr[1]);
 }
