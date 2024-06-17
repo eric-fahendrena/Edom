@@ -1,6 +1,6 @@
 {
   "name": "edomjs",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Edom.js is a JavaScript library that allows you to interact easily with Document Object Model (DOM).",
   "main": "edom.js",
   "scripts": {
