@@ -11,12 +11,14 @@
     "url": "git+ssh://git@github.com/eric-fahendrena/Edom.git"
   },
   "keywords": [
+    "edomjs",
     "DOM",
     "JavaScript",
-    "library"
+    "library",
+    "vanilla"
   ],
   "author": "Eric Razanapahendrena",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/eric-fahendrena/Edom/issues"
   },
