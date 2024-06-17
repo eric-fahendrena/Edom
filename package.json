@@ -1,0 +1,24 @@
+{
+  "name": "edomjs",
+  "version": "1.0.0",
+  "description": "Edom.js is a JavaScript library that allows you to interact easily with Document Object Model (DOM).",
+  "main": "edom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/eric-fahendrena/Edom.git"
+  },
+  "keywords": [
+    "DOM",
+    "JavaScript",
+    "library"
+  ],
+  "author": "Eric Razanapahendrena",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eric-fahendrena/Edom/issues"
+  },
+  "homepage": "https://github.com/eric-fahendrena/Edom#readme"
+}
