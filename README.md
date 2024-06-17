@@ -4,23 +4,16 @@ Edom.js is a JavaScript library that allows you to interact with the DOM easily.
 
 ## Installation
 
-Navigate to your project directory:
+To install edom.js, you can use npm:
 ```bash
-mkdir my-project
-cd my-project
+npm install edomjs
 ```
+Import edom.js into you project:
+```js
+import edom from 'edomjs';
 
-Clone this repository:
-```bash
-git clone https://github.com/eric-fahendrena/Edom
-```
-
-Load `edom.js` into your HTML file followed by your JavaScript code:
-```html
-<script src="Edom/edom.js"></script>
-<script>
-  // Your code here ...
-</script>
+// if you don't use npm ...
+import edom from 'https://cdn.jsdelivr.net/npm/edomjs@latest';
 ```
 
 ## Examples
@@ -31,22 +24,24 @@ Edom.js is easy to use.
 
 Write "Hello, world!" in an `h1` element:
 ```js
+import edom from 'edomjs';
+
 // Create h1 element
-const h1 = create('h1');
+const h1 = edom.create('h1');
 // Write a text
-write(h1)('Hello, world!');
+edom.write(h1)('Hello, world!');
 
 // Add the element to the body
-append(h1)(document.body);
+edom.append(h1)(document.body);
 
 // Or create many elements
-const elements = create(['h2','h3','h4']);
+const elements = edom.create(['h2','h3','h4']);
 
 // Write a text to all elements
-write(elements)('Hello, world!');
+edom.write(elements)('Hello, world!');
 
 // Add all elements to the body
-append(elements)(document.body);
+edom.append(elements)(document.body);
 
 
 ```
@@ -54,59 +49,59 @@ append(elements)(document.body);
 ### Functions
 
 ```js
-const element = create('div'); // create an element
+const element = edom.create('div'); // create an element
 
 // write text to an element
-write(element)("Your text here");
+edom.write(element)("Your text here");
 
 // set html (this completely changes the html inside the element)
-setHTML(element)('<span>HTML code</span>');
+edom.setHTML(element)('<span>HTML code</span>');
 
 // add html (this adds an html code in the element)
-addHTML(element)('<span>HTML code</span>');
+edom.addHTML(element)('<span>HTML code</span>');
 
 // inserting element
-append(element)(parent); // append element to a parent element
-insertBefore(element)(newElement);
-insertAfter(element)(newElement);
+edom.append(element)(parent); // append element to a parent element
+edom.insertBefore(element)(newElement);
+edom.insertAfter(element)(newElement);
 
 // add attribute
-addAttr(element)({'prop': 'value', 'prop1': 'value'});
+edom.addAttr(element)({'prop': 'value', 'prop1': 'value'});
 
 // add style to an element
-addCSS(element)({color: 'red', fontSize: '12px'});
+edom.addCSS(element)({color: 'red', fontSize: '12px'});
 
 // get computed css
-const compCSS = getComputedCSS(element)('width');
+const compCSS = edom.getComputedCSS(element)('width');
 
 // classes utilities
-addClass(element)('my-class'); // add class
-removeClass(element)('my-class'); // remove class
-toggleClass(element)('my-class'); // toggle class
+edom.addClass(element)('my-class'); // add class
+edom.removeClass(element)('my-class'); // remove class
+edom.toggleClass(element)('my-class'); // toggle class
 
 // event handling
-addEvent(element)(eventType)(handler); // add event listener
-removeEvent(element)(eventType)(handler); // remove event listener
+edom.addEvent(element)(eventType)(handler); // add event listener
+edom.removeEvent(element)(eventType)(handler); // remove event listener
 
 // apply css animation
-applyAnimation(element)({
+edom.applyAnimation(element)({
   name: animationName,
   duration: animationDuration,
   timingFunction: animationTimingFunction
 });
 
 // ajax get
-ajaxGet(url)(callback);
-const promise = fetchGet(url);
+edom.ajaxGet(url)(callback);
+const promise = edom.fetchGet(url);
 
 // serialize form data
-const jsonObject = serializeForm(formElement);
+const jsonObject = edom.serializeForm(formElement);
 
 // multiply an element
-const p = create('p');
-write(p)('Hello!');
-append(p)(document.body);
-multiply(p)(5);
+const p = edom.create('p');
+edom.write(p)('Hello!');
+edom.append(p)(document.body);
+edom.multiply(p)(5);
 ```
 
 
