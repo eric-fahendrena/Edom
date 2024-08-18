@@ -2,6 +2,10 @@
 
 Edom.js is a JavaScript library that allows you to interact with the DOM easily.
 
+<div>
+  <img src="edom-logo.png" alt="Edom.js Logo" style="width: 100%;">
+</div>
+
 ## Installation
 
 To install edom.js, you can use npm:
