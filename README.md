@@ -2,8 +2,8 @@
 
 Edom.js is a JavaScript library that allows you to interact with the DOM easily.
 
-<div style="height: 200px;">
-  <img src="edom-logo.png" alt="Edom.js Logo" style="width: 100%; height: 100%; object-fit: cover;">
+<div>
+  <img src="edom-logo.png" alt="Edom.js Logo" style="width: 100%; height: 200px; object-fit: cover;">
 </div>
 
 ## Installation
