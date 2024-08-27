@@ -2,7 +2,7 @@
   "name": "edomjs",
   "version": "2.0.1",
   "description": "Edom.js is a JavaScript library that allows you to interact easily with Document Object Model (DOM).",
-  "main": "edom.js",
+  "main": "dist/edom.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
