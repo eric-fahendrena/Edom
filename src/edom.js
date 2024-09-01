@@ -25,6 +25,13 @@
       },
 
       /**
+       * Find an element by id
+       * @param   {String} id element id (without #)
+       * @return   {HTMLElement} the element with the given id
+       */
+      find: id => document.getElementById(id),
+
+      /**
        * Select an element from html
        * @param   {String} query selector
        * @return   {HTMLElement} an element selected
