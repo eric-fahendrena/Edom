@@ -25,6 +25,13 @@
       },
 
       /**
+       * Find an element by id
+       * @param   {String} id element id (without #)
+       * @return   {HTMLElement} the element with the given id
+       */
+      find: id => document.getElementById(id),
+
+      /**
        * Select an element from html
        * @param   {String} query selector
        * @return   {HTMLElement} an element selected
@@ -188,20 +195,28 @@
 
       /**
        * Add event listener to an element
-       * @param   {HTMLElement} element
+       * @param   {string | HTMLElement} element
        * @return   {Function(event<String>): handler<Function>} specify the event type and the handler
        */
       addEvent: element => event => handler => {
-         element.addEventListener(event, handler);
+         if (typeof element == 'string') {
+            edom.select(element).addEventListener(event, handler)
+         } else {
+            element.addEventListener(event, handler);
+         }
       },
 
       /**
        * Remove event listener from an element
-       * @param   {HTMLElement} element
+       * @param   {string | HTMLElement} element
        * @return   {Function(event<String>): handler<Function>} specify the event type and the handler
        */
       removeEvent: element => event => handler => {
-         element.removeEventListener(event, handler);
+         if (typeof element == 'string') {
+            edom.select(element).removeEventListener(event, handler)
+         } else {
+            element.removeEventListener(event, handler);
+         }
       },
 
       /**
