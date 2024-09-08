@@ -8,19 +8,7 @@ Edom.js is a JavaScript library that allows you to interact with the DOM easily.
 
 ## Installation
 
-### Edom.js as a single JavaScript file
-
-Load edom.js to your html file followed by your javascript code.
-```html
-<script src="edom.js"></script>
-<script>
-  // Your code here ...
-</script>
-```
-
-### Edom.js as npm package
-
-Install edom.js with npm:
+To install edom.js, you can use npm:
 ```bash
 npm install edomjs
 ```

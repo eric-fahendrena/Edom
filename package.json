@@ -2,12 +2,9 @@
   "name": "edomjs",
   "version": "2.0.1",
   "description": "Edom.js is a JavaScript library that allows you to interact easily with Document Object Model (DOM).",
-  "main": "dist/edom.js",
+  "main": "edom.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "copy": "cp src/edom.js dist/edom.js",
-    "minify": "npx terser --compress passes=2 --mangle -o dist/edom.min.js --source-map \"content=dist/edom.min.js.map,includeSources,url=edom.min.js.map\" src/edom.js",
-    "build": "npm-run-all --aggregate-output --parallel copy minify"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -25,9 +22,5 @@
   "bugs": {
     "url": "https://github.com/eric-fahendrena/Edom/issues"
   },
-  "homepage": "https://github.com/eric-fahendrena/Edom#readme",
-  "devDependencies": {
-    "npm-run-all2": "^6.2.2",
-    "terser": "^5.31.6"
-  }
+  "homepage": "https://github.com/eric-fahendrena/Edom#readme"
 }
