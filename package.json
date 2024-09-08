@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy": "cp src/edom.js dist/edom.js",
-    "minify": "npx terser --compress passes=2 --mangle -o dist/edom.min.js --source-map \"url=edom.min.js.map\" src/edom.js",
+    "minify": "npx terser --compress passes=2 --mangle -o dist/edom.min.js --source-map \"content=dist/edom.min.js.map,includeSources,url=edom.min.js.map\" src/edom.js",
     "build": "npm-run-all --aggregate-output --parallel copy minify"
   },
   "repository": {
