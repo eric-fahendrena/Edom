@@ -251,6 +251,24 @@
       },
 
       /**
+       * Perform an AJAX POST request
+       * @param {string} url - The URL to send the request to
+       * @param {string} token - The Bearer token for authorization
+       * @param {object} data - The data to send
+       * @param {Function(result)} onSuccess - The callback function to handle success response
+       * @param {Function(error)} onError - The callback function to handle error response
+       */
+      ajaxPost: (url, token) => (data) => (onSuccess, onError) => {
+         const xhr = new XMLHttpRequest();
+         xhr.open('POST', url, true);
+         xhr.setRequestHeader('content-type', 'application/json');
+         xhr.setRequestHeader('authorization', 'bearer ' + token);
+         xhr.onload = onSuccess;
+         xhr.onerror = onError;
+         xhr.send(JSON.stringify(data));
+      },
+
+      /**
        * Perform an AJAX GET request
        * @param {String} url - The URL to send the request to
        * @param {Function(callback)} callback - The callback function to handle the response
